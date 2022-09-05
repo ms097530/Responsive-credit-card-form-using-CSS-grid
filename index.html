@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="./styles.css" />
-  
+
   <title>Frontend Mentor | Interactive card details form</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+    }
   </style>
+  <script src="./scripts.js" defer></script>
 </head>
+
 <body>
 
   <div class="graphic">
@@ -32,28 +42,41 @@
 
   <div class="card-input">
     <form action="">
-      <label for="">Cardholder Name</label>
-      <input type="text" placeholder="e.g. Jane Appleseed" />
-      <label for="">Card Number</label>
-      <input type="text" placeholder="e.g. 1234 5678 9123 0000" />
-      <fieldset>
+      <label>
+        Cardholder Name
+        <input type="text" placeholder="e.g. Jane Appleseed" />
+      </label>
+      <label>Card Number
+        <input type="text" id="card-number" maxlength="19" inputmode="numeric" pattern="[0-9]+"
+          placeholder="e.g. 1234 5678 9123 0000" />
+      </label>
+      <fieldset id="mm-yy" class="fset-borderless">
         <legend>Exp. Date (MM/YY)</legend>
-        <input type="number">MM</input>
-        <input type="number">YY</input>
+        <input class="numbers-only" inputmode="numeric" maxlength="2" pattern="[0-9]{1,2}" type="text"
+          placeholder="MM" />
+        <input class="numbers-only" inputmode="numeric" maxlength="2" pattern="[0-9]{1,2}" type="text"
+          placeholder="YY" />
       </fieldset>
-      <label for="">CVC</label>
-      <input type="number" placeholder="e.g. 123" />
+      <label id="cvc">CVC
+        <input class="numbers-only" inputmode="numeric" maxlength="3" pattern="[0-9]{3}" type="text"
+          placeholder="e.g. 123" />
+      </label>
       <button>Confirm</button>
     </form>
     <!-- Completed state start -->
-    Thank you!
-    We've added your card details
-    Continue
-    
+    <div id="confirmation">
+      <h3>Thank you!</h3>
+      <h4>
+        We've added your card details
+      </h4>
+      <button>Continue</button>
+    </div>
+
     <div class="attribution">
       Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
-      Coded by <a href="#">Michael Schultz</a>.
+      Coded by <a href="#" target="_blank">Michael Schultz</a>.
     </div>
   </div>
 </body>
+
 </html>

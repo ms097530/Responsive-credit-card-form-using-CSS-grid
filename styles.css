@@ -23,24 +23,43 @@
     --default-font-size: 18px;
     --main-font-family: 'Space Grotesk';
     --main-weight: 500;
+
+    /* Images */
+    --card-x: 447;
+    --card-y: 245;
+    --card-width: 447px;
+    --card-height: 245px;
+    --card-offset: 60px;
+
+    /* Inputs */
+    --input-opacity: 0.4;
 }
 
 *
 {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
+    font-size: var(--default-font-size);
 }
 
 body
 {
-    font-size: var(--default-font-size);
+    /* font-size: var(--default-font-size); */
     font-family: var(--main-font-family);
     font-variation-settings: 'wght' var(--main-weight);
     min-height: 100vh;
     display: grid;
+    grid: 50% 50% / 100%;
+    overflow-x: hidden;
     /* display: flex;
     flex-direction: column; */
     /* justify-content: space-evenly; */
+}
+
+.fset-borderless
+{
+    border: none;
 }
 
 /* General card styles*/
@@ -49,15 +68,19 @@ body
     position: relative;
     background-image: url('./images/bg-main-mobile.png');
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: 100% 80%;
+    min-height: 275px;
 }
 
 .card
 {
     position: absolute;
     background-size: cover;
-    aspect-ratio: 447 / 245;
-    width: 262.5px;
+    aspect-ratio: var(--card-x) / var(--card-y);
+    /* width: 262.5px; */
+    width: 70%;
+    max-width: 300px;
+    min-width: 250px;
     background-repeat: no-repeat;
     /* border-radius: 8px; */
     color: var(--white);
@@ -66,16 +89,16 @@ body
 .card-front
 {
     background-image: url('./images/bg-card-front.png');
-    top: 50%;
-    left: 5%;
+    top: 40%;
+    left: calc(50% - var(--card-width) / 2 + var(--card-offset));
     z-index: 1;
 }
 
 .card-back
 {
     background-image: url('./images/bg-card-back.png');
-    top: 25%;
-    right: 5%;
+    top: 15%;
+    right: calc(50% - var(--card-width) / 2 + var(--card-offset));
     /* z-index: 0; */
 }
 
@@ -122,7 +145,7 @@ body
 
 .bottom-line
 {
-    font-size: 10px;
+
     text-shadow: 0px 0px 10px hsl(278, 68%, 11%);
     opacity: 0.85;
     text-transform: uppercase;
@@ -133,6 +156,7 @@ body
     position: absolute;
     bottom: 13%;
     left: 8%;
+    font-size: 10px;
 }
 
 .bottom-line :nth-child(2)
@@ -140,6 +164,7 @@ body
     position: absolute;
     bottom: 13%;
     right: 8%;
+    font-size: 10px;
 }
 
 /* Card back styles */
@@ -150,4 +175,115 @@ body
     position: absolute;
     top: 44%;
     right: 14%;
+}
+
+/* Form styles */
+::placeholder
+{
+    opacity: var(--input-opacity);
+}
+
+.card-input,
+.card-input form
+{
+    display: grid;
+}
+
+.card-input
+{
+    max-width: min(85%, 600px);
+    margin: auto;
+    gap: 0.6rem;
+}
+
+.card-input form
+{
+    grid-template-columns: 55% 45%;
+    grid-template-rows: repeat(4, 84px);
+    row-gap: 1rem;
+}
+
+.card-input label,
+.card-input legend
+{
+    text-transform: uppercase;
+}
+
+.card-input input
+{
+    display: block;
+    margin-top: 0.5rem;
+    padding: 14px;
+    border: 1px solid rgba(0, 0, 0, var(--input-opacity));
+    border-radius: 0.3rem;
+}
+
+.card-input *
+{
+    grid-column: span 2;
+    width: 100%;
+}
+
+#mm-yy,
+#cvc
+{
+    grid-column: span 1;
+}
+
+#mm-yy
+{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 50% 50%;
+}
+
+#mm-yy input
+{
+    font-size: 18px;
+    grid-column: span 1;
+    width: 90%;
+}
+
+.card-input button
+{
+    background-color: var(--very-dark-violet);
+    color: var(--white);
+    border-radius: 0.5rem;
+    height: 60px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    border: none;
+    margin: auto;
+}
+
+.card-input input:focus-visible
+{
+    /* border: none; */
+    outline: 1px solid hsl(249, 99%, 64%);
+}
+
+.card-input input:invalid:not(:focus-visible)
+{
+    outline: 1px solid red;
+}
+
+.card-input input:valid
+{
+    outline: 1px solid green;
+}
+
+#confirmation
+{
+    display: none;
+}
+
+/* Footer styles */
+.attribution
+{
+    margin-block: auto 1rem;
+}
+
+.attribution a
+{
+    font-size: inherit;
 }
