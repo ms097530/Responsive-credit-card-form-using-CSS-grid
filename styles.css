@@ -33,6 +33,7 @@
 
     /* Inputs */
     --input-opacity: 0.4;
+    --outline-width: 2px;
 }
 
 *
@@ -60,6 +61,11 @@ body
 .fset-borderless
 {
     border: none;
+}
+
+.display-none
+{
+    display: none !important;
 }
 
 /* General card styles*/
@@ -259,22 +265,17 @@ body
 .card-input input:focus-visible
 {
     /* border: none; */
-    outline: 1px solid hsl(249, 99%, 64%);
+    outline: var(--outline-width) solid hsl(249, 99%, 64%);
 }
 
-.card-input input:invalid:not(:focus-visible)
+.card-input input:invalid:not(:focus-visible):not(:placeholder-shown)
 {
-    outline: 1px solid red;
+    outline: var(--outline-width) solid red;
 }
 
 .card-input input:valid
 {
-    outline: 1px solid green;
-}
-
-#confirmation
-{
-    display: none;
+    outline: var(--outline-width) solid green;
 }
 
 /* Footer styles */

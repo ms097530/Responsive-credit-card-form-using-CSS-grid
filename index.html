@@ -41,30 +41,31 @@
   </div>
 
   <div class="card-input">
-    <form action="">
+    <form id="card-form" action="">
       <label>
         Cardholder Name
-        <input type="text" placeholder="e.g. Jane Appleseed" />
+        <input type="text" title="Only letters, &quot;.&quot;, and &quot;-&quot; allowed" pattern="[a-zA-z .-]+"
+          placeholder="e.g. Jane Appleseed" required />
       </label>
       <label>Card Number
-        <input type="text" id="card-number" maxlength="19" inputmode="numeric" pattern="[0-9]+"
-          placeholder="e.g. 1234 5678 9123 0000" />
+        <input type="text" title="Enter 16 digits" id="card-number" maxlength="19" inputmode="numeric"
+          pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}" placeholder="e.g. 1234 5678 9123 0000" required />
       </label>
       <fieldset id="mm-yy" class="fset-borderless">
         <legend>Exp. Date (MM/YY)</legend>
-        <input class="numbers-only" inputmode="numeric" maxlength="2" pattern="[0-9]{1,2}" type="text"
-          placeholder="MM" />
-        <input class="numbers-only" inputmode="numeric" maxlength="2" pattern="[0-9]{1,2}" type="text"
-          placeholder="YY" />
+        <input class="numbers-only" title="Enter a valid month" inputmode="numeric" maxlength="2"
+          pattern="0[1-9]|1[0-2]" type="text" placeholder="MM" required />
+        <input class="numbers-only" title="Enter a valid year" inputmode="numeric" maxlength="2" pattern="[0-9]{2}"
+          type="text" placeholder="YY" required />
       </fieldset>
       <label id="cvc">CVC
-        <input class="numbers-only" inputmode="numeric" maxlength="3" pattern="[0-9]{3}" type="text"
-          placeholder="e.g. 123" />
+        <input class="numbers-only" title="Enter 3 digits" inputmode="numeric" maxlength="3" pattern="[0-9]{3}"
+          type="text" placeholder="e.g. 123" required />
       </label>
-      <button>Confirm</button>
+      <button id="form-submit">Confirm</button>
     </form>
     <!-- Completed state start -->
-    <div id="confirmation">
+    <div class="display-none" id="confirmation">
       <h3>Thank you!</h3>
       <h4>
         We've added your card details
