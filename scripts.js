@@ -1,4 +1,21 @@
-const cardNumberInput = document.querySelector('#card-number');
+
+const submissionBtn = document.querySelector('#form-submit');
+const form = document.querySelector('form');
+
+// select inputs and their matching parts on the card
+// inputs
+const cardholderInput = document.querySelector('#cardholder-input');
+const cardNumberInput = document.querySelector('#card-number-input');
+const mmInput = document.querySelector('#mm-input');
+const yyInput = document.querySelector('#yy-input');
+const cvcInput = document.querySelector('#cvc-input');
+
+// card fields
+const cardholderGraphic = document.querySelector('#name-card');
+const cardNumberGraphic = document.querySelector('#card-number-card');
+const dateGraphic = document.querySelector('#date-card');
+const cvcGraphic = document.querySelector('#cvc-card');
+
 cardNumberInput.addEventListener('input', (e) =>
 {
 
@@ -18,14 +35,24 @@ cardNumberInput.addEventListener('input', (e) =>
     e.target.value = removedSpacesArr.join('');
 })
 
-const submissionBtn = document.querySelector('#form-submit');
+
 submissionBtn.addEventListener('click', (e) =>
 {
-    e.preventDefault();
-    console.log(e);
-    const cardForm = document.querySelector('#card-form');
-    const confirmation = document.querySelector('#confirmation');
-    cardForm.classList.add('display-none');
-    confirmation.classList.remove('display-none');
+    if (form.checkValidity())
+    {
+        e.preventDefault();
+        const cardForm = document.querySelector('#card-form');
+        const confirmation = document.querySelector('#confirmation');
 
+        // hide form - show confirmation
+        cardForm.classList.add('display-none');
+        confirmation.classList.remove('display-none');
+
+        // extract form info and place on card graphic
+        console.log(cardholderInput);
+        cardholderGraphic.innerText = cardholderInput.value;
+        cardNumberGraphic.innerText = cardNumberInput.value;
+        dateGraphic.innerText = `${mmInput.value}/${yyInput.value}`;
+        cvcGraphic.innerText = cvcInput.value;
+    }
 })
