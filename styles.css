@@ -34,6 +34,9 @@
     /* Inputs */
     --input-opacity: 0.4;
     --outline-width: 2px;
+
+    /* Animations */
+    --fade-in-from-side-timing: 0.6s;
 }
 
 *
@@ -76,6 +79,7 @@ button
     display: none !important;
 }
 
+/* Mobile styles */
 /* General card styles*/
 .graphic
 {
@@ -331,7 +335,7 @@ button
     width: 12px;
     height: 3px;
     transform: translate(calc(-50% - 6px), 51px) rotateZ(45deg);
-    animation: gored 3s linear forwards;
+    animation: fade-in-from-side var(--fade-in-from-side-timing) linear forwards;
     background-position: right;
     background-size: 200% 100%;
 }
@@ -344,7 +348,7 @@ button
     width: 26px;
     height: 3px;
     transform: translate(-7px, 46px) rotateZ(-45deg);
-    animation: gored 3s linear forwards;
+    animation: fade-in-from-side var(--fade-in-from-side-timing) linear forwards var(--fade-in-from-side-timing);
     background-position: right;
     background-size: 200% 100%;
 }
@@ -360,12 +364,28 @@ button
     font-size: inherit;
 }
 
-@keyframes gored
+@keyframes fade-in-from-side
 {
     100%
     {
         /* background-color: var(--white); */
         /* background-color: red; */
         background-position: left;
+    }
+}
+
+/* Media queries - Desktop 1440px and up */
+
+@media (min-width: 1440px)
+{
+    body
+    {
+        /* color: red; */
+        grid: 100% / 50% 50%;
+    }
+
+    .graphic
+    {
+        background-size: 100% 100%;
     }
 }
