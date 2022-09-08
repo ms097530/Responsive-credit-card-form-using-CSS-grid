@@ -1,6 +1,8 @@
+const EMPTY_INPUT_ERROR = "Field is required";
 
 const submissionBtn = document.querySelector('#form-submit');
 const form = document.querySelector('form');
+const fieldset = document.querySelector('fieldset');
 
 // select inputs and their matching parts on the card
 // inputs
@@ -16,9 +18,28 @@ const cardNumberGraphic = document.querySelector('#card-number-card');
 const dateGraphic = document.querySelector('#date-card');
 const cvcGraphic = document.querySelector('#cvc-card');
 
+// Cardholder events
+cardholderInput.addEventListener('invalid', (e) =>
+{
+    e.preventDefault();
+    const selector = '#cardholder-input ~ .error';
+    e.target.value === "" ? addError(EMPTY_INPUT_ERROR, selector) : addError(e.target.attributes.title.value, selector);
+});
+cardholderInput.addEventListener('input', (e) =>
+{
+    const selector = '#cardholder-input ~ .error';
+    removeError(selector);
+});
+
+// Cardholder number events
+cardNumberInput.addEventListener('invalid', (e) =>
+{
+    e.preventDefault();
+    const selector = '#card-number-input ~ .error';
+    e.target.value === "" ? addError(EMPTY_INPUT_ERROR, selector) : addError(e.target.attributes.title.value, selector);
+});
 cardNumberInput.addEventListener('input', (e) =>
 {
-
     let removedSpaces = e.target.value.replaceAll(' ', '')
     let removedSpacesArr = removedSpaces.split('')
     let noSpacesLength = removedSpacesArr.length;
@@ -33,7 +54,47 @@ cardNumberInput.addEventListener('input', (e) =>
     if (removedSpacesArr.length > 19)
         removedSpacesArr.length = 19;
     e.target.value = removedSpacesArr.join('');
-})
+
+    const selector = '#card-number-input ~ .error';
+    removeError(selector);
+});
+
+// Fieldset events
+mmInput.addEventListener('invalid', (e) =>
+{
+    e.preventDefault();
+    const selector = '#mm-input ~ .error div:first-child';
+    e.target.value === "" ? addError(EMPTY_INPUT_ERROR, selector) : addError(e.target.attributes.title.value, selector);
+});
+mmInput.addEventListener('input', (e) =>
+{
+    const selector = '#mm-input ~ .error div:first-child';
+    removeError(selector);
+});
+yyInput.addEventListener('invalid', (e) =>
+{
+    e.preventDefault();
+    const selector = '#yy-input ~ .error div:last-child';
+    e.target.value === "" ? addError(EMPTY_INPUT_ERROR, selector) : addError(e.target.attributes.title.value, selector);
+});
+yyInput.addEventListener('input', (e) =>
+{
+    const selector = '#yy-input ~ .error div:last-child';
+    removeError(selector);
+});
+
+// CVC events
+cvcInput.addEventListener('invalid', (e) =>
+{
+    e.preventDefault();
+    const selector = '#cvc-input ~ .error';
+    e.target.value === "" ? addError(EMPTY_INPUT_ERROR, selector) : addError(e.target.attributes.title.value, selector);
+});
+cvcInput.addEventListener('input', (e) =>
+{
+    const selector = '#cvc-input ~ .error';
+    removeError(selector);
+});
 
 
 submissionBtn.addEventListener('click', (e) =>
@@ -49,10 +110,27 @@ submissionBtn.addEventListener('click', (e) =>
         confirmation.classList.remove('display-none');
 
         // extract form info and place on card graphic
-        console.log(cardholderInput);
         cardholderGraphic.innerText = cardholderInput.value;
         cardNumberGraphic.innerText = cardNumberInput.value;
         dateGraphic.innerText = `${mmInput.value}/${yyInput.value}`;
         cvcGraphic.innerText = cvcInput.value;
     }
 })
+
+
+
+function removeError(selector)
+{
+    console.log('removing error');
+    const target = document.querySelector(selector);
+    if (!target.classList.contains('vis-hidden'))
+    {
+        target.classList.add('vis-hidden');
+    }
+}
+function addError(text, selector)
+{
+    const target = document.querySelector(selector);
+    target.innerHTML = text;
+    target.classList.remove('vis-hidden');
+}
