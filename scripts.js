@@ -134,3 +134,8 @@ function addError(text, selector)
     target.innerHTML = text;
     target.classList.remove('vis-hidden');
 }
+
+function focusMM()
+{
+    mmInput.focus();
+}
