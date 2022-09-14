@@ -307,7 +307,7 @@ button
     height: 40px;
     display: flex;
     align-items: center;
-    margin-top: 0.5rem;
+    /* margin-top: 0.5rem; */
     font-weight: normal;
 }
 
