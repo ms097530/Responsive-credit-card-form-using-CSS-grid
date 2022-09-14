@@ -45,29 +45,30 @@
     <form id="card-form">
       <label>
         Cardholder Name
-        <input type="text" title="Only letters, '.', and '-' allowed" id="cardholder-input" pattern="[a-zA-z .-]+"
-          placeholder="e.g. Jane Appleseed" required />
+        <input aria-label="cardholder name" type="text" title="Only letters, '.', and '-' allowed" id="cardholder-input"
+          pattern="[a-zA-z .-]+" placeholder="e.g. Jane Appleseed" required />
         <div class="error vis-hidden"></div>
       </label>
       <label>Card Number
-        <input type="text" title="Enter 16 digits" id="card-number-input" maxlength="19" inputmode="numeric"
-          pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}" placeholder="e.g. 1234 5678 9123 0000" required />
+        <input aria-label="card number" type="text" title="Enter 16 digits" id="card-number-input" maxlength="19"
+          inputmode="numeric" pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}" placeholder="e.g. 1234 5678 9123 0000"
+          required />
         <div class="error vis-hidden"></div>
       </label>
       <fieldset id="mm-yy" class="fset-borderless">
         <legend onClick="focusMM()">Exp. Date (MM/YY)</legend>
-        <input class="numbers-only" title="Enter a valid month" id="mm-input" inputmode="numeric" maxlength="2"
-          pattern="0[1-9]|1[0-2]" type="text" placeholder="MM" required />
-        <input class="numbers-only" title="Enter a valid year" id="yy-input" inputmode="numeric" maxlength="2"
-          pattern="[0-9]{2}" type="text" placeholder="YY" required />
+        <input aria-label="expiration month" class="numbers-only" title="Enter a valid month" id="mm-input"
+          inputmode="numeric" maxlength="2" pattern="0[1-9]|1[0-2]" type="text" placeholder="MM" required />
+        <input aria-label="expiration year" class="numbers-only" title="Enter a valid year" id="yy-input"
+          inputmode="numeric" maxlength="2" pattern="[0-9]{2}" type="text" placeholder="YY" required />
         <div class="error">
           <div class="vis-hidden"></div>
           <div class="vis-hidden"></div>
         </div>
       </fieldset>
       <label id="cvc-label">CVC
-        <input class="numbers-only" title="Enter 3 digits" id="cvc-input" inputmode="numeric" maxlength="3"
-          pattern="[0-9]{3}" type="text" placeholder="e.g. 123" required />
+        <input aria-label="cvc - three digits" class="numbers-only" title="Enter 3 digits" id="cvc-input"
+          inputmode="numeric" maxlength="3" pattern="[0-9]{3}" type="text" placeholder="e.g. 123" required />
         <div class="error vis-hidden"></div>
       </label>
       <button id="form-submit">Confirm</button>
