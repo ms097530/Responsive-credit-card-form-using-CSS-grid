@@ -47,14 +47,16 @@
         Cardholder Name
         <input aria-label="cardholder name" type="text" title="Only letters, '.', and '-' allowed" id="cardholder-input"
           pattern="[a-zA-Z .-]+" placeholder="e.g. Jane Appleseed" required />
-        <div class="error vis-hidden"></div>
+        <span class="error vis-hidden"></span>
       </label>
+      <!-- <div class="error vis-hidden"></div> -->
       <label>Card Number
         <input aria-label="card number" type="text" title="Enter 16 digits" id="card-number-input" maxlength="19"
           inputmode="numeric" pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}" placeholder="e.g. 1234 5678 9123 0000"
           required />
-        <div class="error vis-hidden"></div>
+        <span class="error vis-hidden"></span>
       </label>
+      <!-- <div class="error vis-hidden"></div> -->
       <fieldset id="mm-yy" class="fset-borderless">
         <legend onClick="focusMM()">Exp. Date (MM/YY)</legend>
         <input aria-label="expiration month" class="numbers-only" title="Enter a valid month" id="mm-input"
@@ -69,8 +71,9 @@
       <label id="cvc-label">CVC
         <input aria-label="cvc - three digits" class="numbers-only" title="Enter 3 digits" id="cvc-input"
           inputmode="numeric" maxlength="3" pattern="[0-9]{3}" type="text" placeholder="e.g. 123" required />
-        <div class="error vis-hidden"></div>
+        <span class="error vis-hidden"></span>
       </label>
+      <!-- <div class="error vis-hidden"></div> -->
       <button id="form-submit">Confirm</button>
     </form>
     <!-- Completed state start -->
